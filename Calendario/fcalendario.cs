@@ -19,8 +19,8 @@ namespace Calendario
             int m;
             int dactual, d, ndia, nyear,dinm;//dactual>Obtiene el numero del nombre del dia de la semana
             int w = 1; //Variable que escribe los días en el calendario
-            mactual = DateTime.Now.Month;
-            //mactual = 4;
+            //mactual = DateTime.Now.Month;
+            mactual = 4;
             dactual = DateTime.Now.Day;
             nyear = DateTime.Now.Year; //Obtiene el año actual
             ndia = DateTime.Now.Day; //Obtiene el día en fecha
@@ -33,6 +33,7 @@ namespace Calendario
             dfinal = traductordias(dfinal);
             m = mactual - 1;
             d = dactual - 1;
+            dactual = dactual - 1;
 
             get.dia[0] = "Domingo";
             get.dia[1] = "Lunes";
@@ -60,19 +61,24 @@ namespace Calendario
             {
                 if (dinicio==get.dia[var])
                 {
-                    for(int i=var; i <DateTime.DaysInMonth(nyear, mactual); i++)
+                    for(int i=var; i < dinm; i++)
                     {
                         calen[i] = w.ToString();
                         w++;
-                        
+                        var = 6;
                     }
-                   
+                    
                 }
-                for (menor=w-1; menor<=34; menor++)
+               else 
+                {
+                    calen[var]=" ";
+                }
+                
+              for (menor=w-1; menor<=34; menor++)
                 {
                     calen[menor] = "  ";
                 }
-                
+               
             }
            
 
