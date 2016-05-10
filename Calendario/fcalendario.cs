@@ -19,21 +19,21 @@ namespace Calendario
             int m;
             int dactual, d, ndia, nyear,dinm;//dactual>Obtiene el numero del nombre del dia de la semana
             int w = 1; //Variable que escribe los días en el calendario
-            //mactual = DateTime.Now.Month;
-            mactual = 4;
-            dactual = DateTime.Now.Day;
+            mactual = DateTime.Now.Month;
+            //mactual = 4;
+            dactual = Convert.ToInt32(DateTime.Today.DayOfWeek);//Nombre del dia actual
             nyear = DateTime.Now.Year; //Obtiene el año actual
             ndia = DateTime.Now.Day; //Obtiene el día en fecha
             int menor = 0;
-            dinm = DateTime.DaysInMonth(nyear, mactual);
+            dinm = DateTime.DaysInMonth(nyear, mactual);//Numeros totales de dias del mes
             string dinicio = new DateTime(nyear, mactual, 1).DayOfWeek.ToString(); //Obtiene el dia de la semana que inicia el mes
             string dfinal = new DateTime(nyear, mactual + 1,1).AddDays(-1).DayOfWeek.ToString();//Obtiene el dia de la semana que finaliza el mes
 
-            dinicio =traductordias(dinicio);
-            dfinal = traductordias(dfinal);
-            m = mactual - 1;
+            dinicio =traductordias(dinicio);//Traduce el nombre del dia de inicio del mes
+            dfinal = traductordias(dfinal);//Traduce el nombre del dia de fin del mes
+            mactual=mactual - 1;
             d = dactual - 1;
-            dactual = dactual - 1;
+          
 
             get.dia[0] = "Domingo";
             get.dia[1] = "Lunes";
@@ -57,33 +57,33 @@ namespace Calendario
             get.mes[11] = "Diciembre";
 
             
-            for (int var =0; var<=6; var++)
-            {
-                if (dinicio==get.dia[var])
-                {
-                    for(int i=var; i < dinm; i++)
-                    {
-                        calen[i] = w.ToString();
-                        w++;
-                        var = 6;
-                    }
-                    
-                }
-               else 
-                {
-                    calen[var]=" ";
-                }
-                
-              for (menor=w-1; menor<=34; menor++)
-                {
-                    calen[menor] = "  ";
-                }
-               
-            }
+          for (int var =0; var<=6; var++)
+          {
+              if (dinicio==get.dia[var])
+              {
+                  for(int i=var; i < dinm; i++)
+                  {
+                      calen[i] = w.ToString();
+                      w++;
+                      var = 6;
+                  }
+
+              }
+             else 
+              {
+                  calen[var]=" ";
+              }
+
+            for (menor=w-1; menor<=34; menor++)
+              {
+                  calen[menor] = "  ";
+              }
            
+        }
+
 
             Console.WriteLine("------------------------------------------------------");
-            Console.WriteLine("Hoy es "+ get.dia[dactual]+ " " + ndia+ " de " + get.mes[m] + " del " + nyear);
+            Console.WriteLine("Hoy es "+ get.dia[dactual]+ " " + ndia+ " de " + get.mes[mactual] + " del " + nyear);
             Console.WriteLine("\n");
             Console.WriteLine(get.dia[0]    +"|"+ get.dia[1]    +"|"+ get.dia[2]    +"|"+ get.dia[3]    +"|"+ get.dia[4]    +"|"+ get.dia[5]    +"|"+ get.dia[6]);
             Console.WriteLine("------------------------------------------------------");
