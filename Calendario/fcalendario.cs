@@ -14,13 +14,14 @@ namespace Calendario
             
             calendario get = new calendario();
             int mactual;
-            string[] calen = new string[35];
+            string[] calen = new string[37];
             //int DateTime.DaysInMonth(int year, int month)
-            int m;
+            int i=0;
+            int aux = 0;
             int dactual, d, ndia, nyear,dinm;//dactual>Obtiene el numero del nombre del dia de la semana
             int w = 1; //Variable que escribe los días en el calendario
-            mactual = DateTime.Now.Month;
-            //mactual = 4;
+            //mactual = DateTime.Now.Month;
+            mactual = 1;
             dactual = Convert.ToInt32(DateTime.Today.DayOfWeek);//Nombre del dia actual
             nyear = DateTime.Now.Year; //Obtiene el año actual
             ndia = DateTime.Now.Day; //Obtiene el día en fecha
@@ -58,33 +59,35 @@ namespace Calendario
 
             
           for (int var =0; var<=6; var++)
-          {
+            {
               if (dinicio==get.dia[var])
               {
-                  for(int i=var; i < dinm; i++)
+                  for(i=var; aux < dinm; i++)
                   {
                       calen[i] = w.ToString();
                       w++;
-                      var = 6;
+                      aux++;
                   }
-
-              }
+                    var = 6;
+               }
              else 
               {
                   calen[var]=" ";
               }
-
-            for (menor=w-1; menor<=34; menor++)
-              {
-                  calen[menor] = "  ";
-              }
-           
-        }
+            }
+            if (i <34) 
+            {
+                for (menor = w - 1; menor <= 34; menor++)
+                {
+                    calen[menor] = "  ";
+                }
+            }
 
 
             Console.WriteLine("------------------------------------------------------");
             Console.WriteLine("Hoy es "+ get.dia[dactual]+ " " + ndia+ " de " + get.mes[mactual] + " del " + nyear);
             Console.WriteLine("\n");
+            Console.WriteLine("El mes mostrado es: " + get.mes[mactual]);
             Console.WriteLine(get.dia[0]    +"|"+ get.dia[1]    +"|"+ get.dia[2]    +"|"+ get.dia[3]    +"|"+ get.dia[4]    +"|"+ get.dia[5]    +"|"+ get.dia[6]);
             Console.WriteLine("------------------------------------------------------");
             Console.WriteLine(calen[0]  +"      |"+ calen[1]  +"    |"+ calen[2]  +"     |"+ calen[3]  +"        |"+ calen[4]  +"     |"+ calen[5]  +"       |"+ calen[6]);
@@ -96,6 +99,8 @@ namespace Calendario
             Console.WriteLine(calen[21] + "     |" + calen[22] + "   |" + calen[23] + "    |" + calen[24] + "       |" + calen[25] + "    |" + calen[26] + "      |" + calen[27]);
             Console.WriteLine("------------------------------------------------------");
             Console.WriteLine(calen[28] + "     |" + calen[29] + "   |" + calen[30] + "    |" + calen[31] + "       |" + calen[32] + "    |" + calen[33] + "      |" + calen[34]);
+            Console.WriteLine("------------------------------------------------------");
+            Console.WriteLine(calen[35] + "     |" + calen[36] );
             //System.Threading.Thread.Sleep(9000);
             Console.Read();
         }
